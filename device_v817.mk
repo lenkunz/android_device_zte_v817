@@ -43,18 +43,26 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 ## ZTE ramdisk
+#PRODUCT_COPY_FILES += \
+#    device/zte/v817/ramdisk/fstab.nand.msm7627a:root/fstab.nand.msm7627a \
+#    device/zte/v817/ramdisk/fstab.qcom:root/fstab.qcom \
+#    device/zte/v817/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
+#    device/zte/v817/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
+#    device/zte/v817/ramdisk/init.qcom.rc:root/init.qcom.rc \
+#    device/zte/v817/ramdisk/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
+#    device/zte/v817/ramdisk/init.qcom.unicorn-dpi.sh:root/init.qcom.unicorn-dpi.sh \
+#    device/zte/v817/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+#    device/zte/v817/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
+#    device/zte/v817/ramdisk/init.target.rc:root/init.target.rc \
+#    device/zte/v817/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
+## ZTE ramdisk - test
 PRODUCT_COPY_FILES += \
-    device/zte/v817/ramdisk/fstab.nand.msm7627a:root/fstab.nand.msm7627a \
-    device/zte/v817/ramdisk/fstab.qcom:root/fstab.qcom \
-    device/zte/v817/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
-    device/zte/v817/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
-    device/zte/v817/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    device/zte/v817/ramdisk/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
-    device/zte/v817/ramdisk/init.qcom.unicorn-dpi.sh:root/init.qcom.unicorn-dpi.sh \
-    device/zte/v817/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/zte/v817/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    device/zte/v817/ramdisk/init.target.rc:root/init.target.rc \
-    device/zte/v817/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
+    device/zte/v817/ramdisk/test:root/fstab.qcom \
+    device/zte/v817/ramdisk/test:root/init.qcom.rc \
+    device/zte/v817/ramdisk/test:root/init.qcom.usb.rc \
+    device/zte/v817/ramdisk/test:root/initlogo.rle \
+    device/zte/v817/ramdisk/test:root/lpm.rc \
+    device/zte/v817/ramdisk/test:root/ueventd.qcom.rc
 
 ### BEGIN: build properties
 ### Copy from arubislim (Galaxy Core)
