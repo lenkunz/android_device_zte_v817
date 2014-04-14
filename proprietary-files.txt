@@ -1,9 +1,11 @@
 lib/liblocation.so
 
 ## Permission
+# remove because it was always overwritten by make file
 # etc/permissions/android.software.live_wallpaper.xml
 
 ## RIL
+## All RIL copy from 'Samsung Galaxy Core' device tree
 #lib/libauth.so
 #lib/libcm.so
 #lib/libdiag.so
@@ -22,11 +24,14 @@ lib/libril-qcril-hook-oem.so
 #lib/libwms.so
 #lib/libwmsts.so
 
+## I found this in 'ZTE Blade' device tree
 bin/qmuxd
 
 ## Audio
 lib/hw/audio.primary.msm7627a.so
-lib/hw/audio_policy.msm7627a.so
+# audio_policy.msm7627a.so appear device not found nearest last line from logcat
+# remove to test If error make black screen - no different
+# lib/hw/audio_policy.msm7627a.so
 
 etc/audio_policy.conf
 etc/AudioFilter.csv
@@ -35,7 +40,9 @@ etc/AudioFilter.csv
 lib/liboemcamera.so
 lib/libmmjpeg.so
 lib/libmmipl.so
-lib/hw/camera.msm7627a.so
+# camera.msm7627a.so may need to be recompile - return not found signal from libtscamera-ext.so
+# removed to test If error make black screen - no different
+# lib/hw/camera.msm7627a.so
 lib/libmmcamera_image_stab.so
 lib/libmmcamera_frameproc.so
 lib/libmmcamera_faceproc.so
@@ -43,6 +50,9 @@ lib/libmmcamera_wavelet_lib.so
 lib/libmmcamera_hdr_lib.so
 lib/libmmcamera_interface2.so
 lib/libmmcamera_statsproc31.so
+
+# This not worked - returned - return not found signal from libtscamera-ext.so
+# lib/libtscamera-ext.so
 
 bin/mm-qcamera-daemon
 
@@ -113,7 +123,7 @@ lib/libomx_amrdec_sharedlibrary.so
 lib/libomx_amrenc_sharedlibrary.so
 lib/libomx_sharedlibrary.so
 
-# Undefined
+## Undefined - required from some libs
 lib/hw/copybit.msm7627a.so
 lib/hw/gralloc.msm7627a.so
 lib/hw/hwcomposer.msm7627a.so
@@ -173,23 +183,30 @@ etc/thermald-8x25-msm2-msm_therm.conf
 etc/thermald-8x25-msm2-pmic_therm.conf
 etc/thermald-8x25q-msm2-msm_therm.conf
 
-# FM
-etc/init.qcom.fm.sh
+## FM
+# remove all things relate to audio libs
+# etc/init.qcom.fm.sh
 
-# Wifi
-lib/modules/cfg80211.ko
+## Wifi
+# remove all things relate to audio libs
+#lib/modules/cfg80211.ko
 
-etc/firmware/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin
-etc/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin
-etc/wifi/wpa_supplicant.conf
+#etc/firmware/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin
+#etc/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin
+#etc/wifi/wpa_supplicant.conf
 
-# Keypad
+## This needed by ZTE init for check if wlan firmware missing
+# remove all things relate to audio libs
+#lib/modules/ath6kl/ath6kl_sdio.ko
+#lib/modules/ath6kl/cfg80211.ko
+
+## Keypad
+# Appear no configuration - But it's maybe because of first boot
 usr/keylayout/7x27a_kp.kl
 usr/keylayout/surf_keypad.kl
 usr/keychars/7x27a_kp.kcm
 
-# Found and required by init
-# init
+## Found and required by init
 bin/usbhub
 bin/dun-server
 bin/ext4check.sh
@@ -209,6 +226,7 @@ bin/qosmgr
 bin/hciattach
 bin/fm_qsoc_patches
 
+## try to copy all of qcom files
 etc/init.qcom.coex.sh
 etc/init.ath3k.bt.sh
 etc/init.qcom.wifi.sh
@@ -225,9 +243,7 @@ etc/qosmgr_rules.xml
 etc/getlogtofile.sh
 etc/hcidump.sh
 
-lib/modules/ath6kl/ath6kl_sdio.ko
-lib/modules/ath6kl/cfg80211.ko
-
+## This required by some hw libs
 lib/hw/hwcomposer.msm7627a.so
 lib/hw/gralloc.msm7627a.so
 lib/libgenlock.so
@@ -239,8 +255,7 @@ lib/libqdutils.so
 lib/libimage-jpeg-enc-omx-comp.so
 lib/libhwcexternal.so
 
-lib/libtscamera-ext.so
 lib/libhwcservice.so
 
-#WVMExtractor
+## needed by WVMExtractor
 vendor/lib/libwvm.so
