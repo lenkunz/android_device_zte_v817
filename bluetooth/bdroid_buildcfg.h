@@ -21,4 +21,3 @@
 #define SMP_INCLUDED FALSE
 #define BTM_DEF_LOCAL_NAME   "GT-I8262"
 #endif
-

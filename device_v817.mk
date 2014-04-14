@@ -1,3 +1,5 @@
+# Inherit the msm7x27a-common definitions
+$(call inherit-product, device/qcom/msm7x27a/msm7x27a.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
@@ -19,120 +21,96 @@ PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 ## FM Radio permissions
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+#PRODUCT_COPY_FILES += \
+#    frameworks/base/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 # ZTE rmt_storage_recovery
 PRODUCT_COPY_FILES += \
-    device/zte/v817/recovery/sbin/rmt_storage_recovery:recovery/root/sbin/rmt_storage_recovery
+    device/zte/v817/recovery/sbin/rmt_storage_recovery:recovery/root/sbin/rmt_storage_recovery \
+    device/zte/v817/recovery/sbin/nv_set:recovery/root/sbin/nv_set
 
 ## Hardware properties
+#    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+#    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+#    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+#    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+#    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+#    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-## ZTE ramdisk
+#Bluetooth configuration files
 #PRODUCT_COPY_FILES += \
-#    device/zte/v817/ramdisk/fstab.nand.msm7627a:root/fstab.nand.msm7627a \
-#    device/zte/v817/ramdisk/fstab.qcom:root/fstab.qcom \
-#    device/zte/v817/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
-#    device/zte/v817/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
-#    device/zte/v817/ramdisk/init.qcom.rc:root/init.qcom.rc \
-#    device/zte/v817/ramdisk/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
-#    device/zte/v817/ramdisk/init.qcom.unicorn-dpi.sh:root/init.qcom.unicorn-dpi.sh \
-#    device/zte/v817/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-#    device/zte/v817/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
-#    device/zte/v817/ramdisk/init.target.rc:root/init.target.rc \
-#    device/zte/v817/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
-## ZTE ramdisk - test
+#   system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
+
+## ZTE ramdisk
 PRODUCT_COPY_FILES += \
-    device/zte/v817/ramdisk/test:root/fstab.qcom \
-    device/zte/v817/ramdisk/test:root/init.qcom.rc \
-    device/zte/v817/ramdisk/test:root/init.qcom.usb.rc \
-    device/zte/v817/ramdisk/test:root/initlogo.rle \
-    device/zte/v817/ramdisk/test:root/lpm.rc \
-    device/zte/v817/ramdisk/test:root/ueventd.qcom.rc
+    $(call find-copy-subdir-files,*,device/zte/v817/ramdisk,root)
 
-### BEGIN: build properties
-### Copy from arubislim (Galaxy Core)
+## Packages
+#wlan
+#PRODUCT_PACKAGES += \
+#    dhcpcd.conf
 
-## Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.checkjni=0 \
-    dalvik.vm.dexopt-data-only=1 \
-    dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y \
-    dalvik.vm.heapsize=48m
+# EXT4 Support
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    e2fsck \
+    cpueater
 
-## Development settings
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.debuggable=1 \
-    ro.adb.secure=1 \
-    ro.secure=1 \
-    ro.allow.mock.location=0
+# Graphics
+PRODUCT_PACKAGES += \
+    libgenlock \
+    libgralloc \
+    libhwcomposer
 
-## Graphics
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.force_highendgfx=1
+# Light
+PRODUCT_PACKAGES += \
+    liblight
 
-## Disable kernel error
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.qemu=0
+# Audio
+#PRODUCT_PACKAGES += \
+#    libaudio
 
-## Loop ringtone
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.call_ring.delay=3000 \
-    ro.telephony.call_ring.multiple=false
+# Camera
+#PRODUCT_PACKAGES += \
+#    libtscamera-ext
 
-## Other
-PRODUCT_PROPERTY_OVERRIDES += \
-    DEVICE_PROVISIONED=1 \
-    dev.sfbootcomplete=0 \
-    ro.config.play.bootsound=0 \
-    ro.setupwizard.enable_bypass=1
+# Power
+PRODUCT_PACKAGES += \
+    power.msm7x27a
 
-## RIL, telephony
-PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/system/lib/libril-qc-qmi-1.so \
-    ro.telephony.default_network=0 \
-    rild.libargs=-d/dev/smd0 \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10 \
-    ro.multi.rild=true
+# CyanogenMOD
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
 
-## USB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+## Start - Another from Samsung Galaxy Core
+# Audio
+PRODUCT_COPY_FILES += \
+    device/zte/v817/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/zte/v817/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 
-## WiFi
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=180
+# Keychar
+PRODUCT_COPY_FILES += \
+    device/zte/v817/prebuilt/usr/keychars/7x27a_kp.kcm:system/usr/keychars/7x27a_kp.kcm
 
-## WiFi AP
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.ap.interface=wlan0
+# Keylayout
+PRODUCT_COPY_FILES += \
+    device/zte/v817/prebuilt/usr/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
+    device/zte/v817/prebuilt/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    device/zte/v817/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
+## End - Another from Samsung Galaxy Core
 
-## QCOM
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true \
-    dev.pm.dyn_sample_period=700000 \
-    dev.pm.dyn_samplingrate=1 \
-    ro.vendor.extension_library=/system/lib/libqc-opt.so
-
-### End: build properties
-
-$(call inherit-product, build/target/product/full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0

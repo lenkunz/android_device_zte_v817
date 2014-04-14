@@ -68,12 +68,13 @@ on boot
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+    chmod 0644 /proc/cmdline
 
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
-	#change the mode of /proc/fuse_info
-	chmod 0444 /proc/fuseinfo
+    #change the mode of /proc/fuse_info
+    chmod 0444 /proc/fuseinfo
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
@@ -101,18 +102,18 @@ on boot
     #    android_filesystem_config.h had configured all the permission
     #    system partition Read-only,you can do it in init.qcom.post_fs.sh
     #Set SUID bit for usbhub
-    #chmod 0755 /system/bin/usbhub
-    #chmod 0755 /system/bin/usbhub_init
+    chmod 0755 /system/bin/usbhub
+    chmod 0755 /system/bin/usbhub_init
 
     #Remove SUID bit
-    #chmod 4755 /system/xbin/su
-    #chmod 4755 /system/xbin/procmem
-    #chmod 4755 /system/xbin/tcpdump
-    #chmod 4755 /system/xbin/procrank
-    #chmod 4755 /system/xbin/librank
+    chmod 4755 /system/xbin/su
+    chmod 4755 /system/xbin/procmem
+    chmod 4755 /system/xbin/tcpdump
+    chmod 4755 /system/xbin/procrank
+    chmod 4755 /system/xbin/librank
 
     #Remove SUID bit for iproute2 ip tool
-    #chmod 0755 /system/bin/ip
+    chmod 0755 /system/bin/ip
 
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state

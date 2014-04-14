@@ -115,8 +115,8 @@ service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
     group system
     disabled
 
-on emmc-fs
-
+# on emmc-fs
+on fs
     #dongjunbo  cryptfs  change 
     #mount_all fstab.msm7627a
      #dongjunbo  cryptfs  change  end 
@@ -148,7 +148,7 @@ on emmc-fs
     wait /dev/block/platform/msm_sdcc.3/by-num/p14
     mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p14 /persist nosuid nodev barrier=1
 
-on fs
+# on fs
 	# mount mtd partitions
     mount_all fstab.nand.msm7627a
     mount yaffs2 mtd@persist /persist nosuid nodev
