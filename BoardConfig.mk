@@ -32,7 +32,7 @@ TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 ## recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/v817/recovery/kernel
+# TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/v817/recovery/kernel
 TARGET_RECOVERY_FSTAB := device/zte/v817/recovery/recovery.fstab
 RECOVERY_FSTAB_VERSION := 2
 BOARD_RECOVERY_SWIPE := true
