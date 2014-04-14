@@ -24,7 +24,7 @@ BOARD_KERNEL_PAGESIZE := 4096
 
 # kernel source
 TARGET_KERNEL_SOURCE := kernel/zte/v817_test
-TARGET_KERNEL_CONFIG := zte_bladev_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_v817_defconfig
 TARGET_PREBUILT_KERNEL := device/zte/v817/recovery/kernel
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
